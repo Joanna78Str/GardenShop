@@ -1,9 +1,9 @@
-package infrastructure.entity;
+package pl.asia.infrastructure.entity;
 
 import java.time.LocalDate;
 
 public class Client {
-    private final Long id;
+    private Long id;
     private final String firstName;
     private final String lastName;
     private final LocalDate birthday;
@@ -15,6 +15,16 @@ public class Client {
     public Client(Long id, String firstName, String lastName, LocalDate birthday, String email, Long phoneNumber,
                   String address, String password) {
         this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthday = birthday;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.password = password;
+    }
+
+    public Client(String firstName, String lastName, LocalDate birthday, String email, Long phoneNumber, String address, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthday = birthday;

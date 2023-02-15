@@ -15,4 +15,9 @@ public class ClientRepositoryInMemory implements ClientRepository {
                 client.getPhoneNumber(),client.getAddress(),client.getPassword()));
         return client;
     }
+
+    @Override
+    public List<Client> getClients() {
+        return clients;
+    }
 }

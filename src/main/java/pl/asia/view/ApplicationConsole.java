@@ -1,8 +1,10 @@
 package pl.asia.view;
 
 import pl.asia.api.GardenShopApi;
+import pl.asia.infrastructure.entity.Client;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class ApplicationConsole implements ApplicationView {
 
@@ -23,7 +25,8 @@ public class ApplicationConsole implements ApplicationView {
         while (runApplication) {
             System.out.println("Wybierz polecenie:\n" +
                     "[0] - wyjdź z programu\n" +
-                    "[1] - utwórz konto użytkownika\n");
+                    "[1] - utwórz konto użytkownika\n" +
+                    "[2] - pobierz listę użytkowników\n");
 
 
             int choice = ScannerService.readInt();
@@ -31,6 +34,9 @@ public class ApplicationConsole implements ApplicationView {
             switch (choice) {
                 case 1:
                     createUser();
+                    break;
+                case 2:
+                    getClients();
                     break;
                 case 0:
                 default:
@@ -57,6 +63,10 @@ public class ApplicationConsole implements ApplicationView {
         String password = ScannerService.readString();
 
         gardenShopApi.saveClient(firstName,lastName,birthdate,email,phoneNumber,address,password);
+    }
+
+    private void getClients(){
+        System.out.println(gardenShopApi.getClients());
     }
 
 }

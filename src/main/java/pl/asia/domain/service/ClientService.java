@@ -18,4 +18,23 @@ public class ClientService {
     public List<Client> getClients(){
         return clientRepository.getClients();
     }
+    public Client getClient(Long id){
+        return clientRepository.getClient(id);
+    }
+
+    public void removeClient(Long id) {
+        clientRepository.removeClient(id);
+    }
+
+    public void updateClient(String email, Long phoneNumber, String address, String password,Long id){
+        Client clientFromDB = clientRepository.getClient(id);
+        Client clientToUpdate = new Client(
+                clientFromDB.getId(),
+                clientFromDB.getFirstName(),
+                clientFromDB.getLastName(),
+                clientFromDB.getBirthday(),
+                email, phoneNumber, address, password
+        );
+        clientRepository.updateClient(clientToUpdate);
+    }
 }

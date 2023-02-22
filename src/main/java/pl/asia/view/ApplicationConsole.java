@@ -26,7 +26,11 @@ public class ApplicationConsole implements ApplicationView {
             System.out.println("Wybierz polecenie:\n" +
                     "[0] - wyjdź z programu\n" +
                     "[1] - utwórz konto użytkownika\n" +
-                    "[2] - pobierz listę użytkowników\n");
+                    "[2] - pobierz listę użytkowników\n" +
+                    "[3] - pobierz klineta po Id\n" +
+                    "[4] - usuń użytkownika\n" +
+                    "[5] - edytuj dane użytkownika\n");
+
 
 
             int choice = ScannerService.readInt();
@@ -37,6 +41,15 @@ public class ApplicationConsole implements ApplicationView {
                     break;
                 case 2:
                     getClients();
+                    break;
+                case 3:
+                    getClient();
+                    break;
+                case 4:
+                    removeClient();
+                    break;
+                case 5:
+                    updateClient();
                     break;
                 case 0:
                 default:
@@ -67,6 +80,32 @@ public class ApplicationConsole implements ApplicationView {
 
     private void getClients(){
         System.out.println(gardenShopApi.getClients());
+    }
+    private void getClient(){
+        System.out.println("Podaj Id klienta:");
+        Long id = ScannerService.readLong();
+        System.out.println(gardenShopApi.getClient(id));
+    }
+    private void removeClient(){
+        System.out.println("Podaj Id klienta:");
+        Long id = ScannerService.readLong();
+        gardenShopApi.removeClient(id);
+        System.out.println("Usunięto klienta o id: " + id);
+    }
+
+    private void updateClient(){
+        System.out.println("Podaj Id klienta:");
+        Long id = ScannerService.readLong();
+        System.out.println("podaj email:");
+        String email = ScannerService.readString();
+        System.out.println("podaj numer telefonu:");
+        Long phoneNumber = ScannerService.readLong();
+        System.out.println("podaj adres:");
+        String address = ScannerService.readString();
+        System.out.println("podaj hasło:");
+        String password = ScannerService.readString();
+
+        gardenShopApi.updateClient(email,phoneNumber,address,password,id);
     }
 
 }

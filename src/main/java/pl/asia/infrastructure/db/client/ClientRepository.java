@@ -8,4 +8,10 @@ public interface ClientRepository {
     Client saveClient(Client client);
 
     List<Client> getClients();
+
+    Client getClient(Long id);
+
+    void removeClient(Long id);
+
+    void updateClient(Client client);
 }

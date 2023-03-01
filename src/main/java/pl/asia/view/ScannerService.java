@@ -24,5 +24,8 @@ class ScannerService {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return LocalDate.parse(dateString, formatter);
+
     }
+
+    public static Double readDouble() {return new Scanner(System.in).nextDouble();}
 }

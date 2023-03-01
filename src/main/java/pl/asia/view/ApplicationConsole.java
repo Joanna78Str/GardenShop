@@ -29,8 +29,12 @@ public class ApplicationConsole implements ApplicationView {
                     "[2] - pobierz listę użytkowników\n" +
                     "[3] - pobierz klineta po Id\n" +
                     "[4] - usuń użytkownika\n" +
-                    "[5] - edytuj dane użytkownika\n");
-
+                    "[5] - edytuj dane użytkownika\n"+
+                    "[6] - wprowadź roślinę\n" +
+                    "[7] - pobierz listę roślin\n" +
+                    "[8] - pobierz roślinę po Id\n"+
+                    "[9] - usuń roślinę\n"+
+                    "[10] - edytuj dane rośliny\n" );
 
 
             int choice = ScannerService.readInt();
@@ -50,6 +54,21 @@ public class ApplicationConsole implements ApplicationView {
                     break;
                 case 5:
                     updateClient();
+                    break;
+                case 6:
+                    createItem();
+                    break;
+                case 7:
+                    getPlants();
+                    break;
+                case 8:
+                    getPlant();
+                    break;
+                case 9:
+                    removePlant();
+                    break;
+                case 10:
+                    updatePlant();
                     break;
                 case 0:
                 default:
@@ -106,6 +125,45 @@ public class ApplicationConsole implements ApplicationView {
         String password = ScannerService.readString();
 
         gardenShopApi.updateClient(email,phoneNumber,address,password,id);
+    }
+    private void createItem(){
+        System.out.println("podaj nazwę rośliny:");
+        String name = ScannerService.readString();
+        System.out.println("podaj typ rośliny:");
+        String type = ScannerService.readString();
+        System.out.println("podaj producenta:");
+        String producer = ScannerService.readString();
+        System.out.println("podaj cenę:");
+        Double price = ScannerService.readDouble();
+        System.out.println("opisz roślinę:");
+        String specification = ScannerService.readString();
+
+        gardenShopApi.savePlant(name,type,producer,price,specification);
+    }
+    private void getPlants(){System.out.println(gardenShopApi.getPlants());}
+
+    private void getPlant(){
+        System.out.println("Podaj ID rośliny:");
+        Long id = ScannerService.readLong();
+        System.out.println(gardenShopApi.getPlant(id));
+    }
+
+    private void removePlant(){
+        System.out.println("Podaj ID rośliny:");
+        Long id = ScannerService.readLong();
+        gardenShopApi.removePlant(id);
+        System.out.println("Usunięto roślinę o ID: " + id);
+    }
+
+    private void updatePlant(){
+        System.out.println("Podaj ID:");
+        Long id = ScannerService.readLong();
+        System.out.println("Podaj producenta:");
+        String producer = ScannerService.readString();
+        System.out.println("Podaj cenę:");
+        double price = ScannerService.readDouble();
+
+        gardenShopApi.updatePlant(producer,price,id);
     }
 
 }

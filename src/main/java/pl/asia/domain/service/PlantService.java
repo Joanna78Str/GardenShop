@@ -12,7 +12,9 @@ import java.util.List;
 
 public class PlantService {
 
-    private final PlantRepository plantRepository = new PlantRepositoryInMemory();
+    private final PlantRepository plantRepository;
+
+    public PlantService(PlantRepository plantRepository){this.plantRepository = plantRepository;}
 
     public Plant savePlant(String name, String type, String producer, double price, String specification){
         return plantRepository.savePlant(new Plant(name, type,producer, price, specification));

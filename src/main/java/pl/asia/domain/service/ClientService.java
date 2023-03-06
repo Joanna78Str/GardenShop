@@ -8,7 +8,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class ClientService {
-    private final ClientRepository clientRepository = new ClientRepositoryInMemory();
+    private final ClientRepository clientRepository;
+
+    public ClientService(ClientRepository clientRepository) {
+        this.clientRepository = clientRepository;
+    }
 
     public Client saveClient(String firstName, String lastName, LocalDate birthday, String email, Long phoneNumber,
                              String address, String password){
